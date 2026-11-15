@@ -1,0 +1,29 @@
+{
+  "name": "lenn-team-skills",
+  "description": "Claude skills by Lenn.Team",
+  "owner": {
+    "name": "Lenn.Team",
+    "url": "https://github.com/Lenn-Team"
+  },
+  "plugins": [
+    {
+      "name": "songwriter",
+      "displayName": "Barde – Songwriter",
+      "source": "./skills/songwriter",
+      "description": "Song lyrics in any genre and language plus prompts for Suno and ElevenLabs – from interview to sing-along lyrics and Spotify release",
+      "version": "0.1.0",
+      "category": "creative",
+      "tags": [
+        "songwriting",
+        "lyrics",
+        "suno",
+        "elevenlabs",
+        "music",
+        "spotify"
+      ],
+      "homepage": "https://github.com/Lenn-Team/lenn.team-skills/tree/main/skills/songwriter",
+      "repository": "https://github.com/Lenn-Team/lenn.team-skills",
+      "license": "MIT"
+    }
+  ]
+}
