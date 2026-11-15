@@ -6,7 +6,7 @@ A collection of Claude skills by Lenn.Team. Each skill lives in its own folder u
 
 | Skill | Folder | Version | Purpose |
 |---|---|---|---|
-| Barde – Songwriter | [`skills/songwriter/`](skills/songwriter/) | 0.1.0 | Song lyrics in any genre and language, prompts for Suno and ElevenLabs, through to a Spotify release |
+| Barde – Songwriter | [`skills/songwriter/`](skills/songwriter/) | [0.1.0](https://github.com/Lenn-Team/lenn.team-skills/releases/tag/songwriter-v0.1.0) ([ZIP](https://github.com/Lenn-Team/lenn.team-skills/releases/download/songwriter-v0.1.0/songwriter.zip)) | Song lyrics in any genre and language, prompts for Suno and ElevenLabs, through to a Spotify release |
 
 ## Installation
 Replace `<skill>` with the folder name of a skill from the table above (for example `songwriter`). This repository is our own plugin marketplace for Claude Code (`.claude-plugin/marketplace.json`, name `lenn-team-skills`); it is not part of Anthropic's official directory.
@@ -27,10 +27,9 @@ After that, `/plugin` lists all skills of this collection under `lenn-team-skill
 
 ### Claude app (claude.ai on web, desktop, mobile)
 The app cannot install from a GitHub link. Upload the skill as a ZIP instead:
-1. Download the repository (green **Code** button → **Download ZIP**) and unpack it.
-2. Zip the single folder `skills/<skill>/` (the ZIP must contain the folder with `SKILL.md` inside).
-3. In Claude: **Settings → Capabilities → Skills → Upload skill**, choose the ZIP and switch the skill on.
-For a new version, upload the new ZIP again.
+1. Open the skill's latest release (link in the table above, or [Releases](https://github.com/Lenn-Team/lenn.team-skills/releases)) and download **`<skill>.zip`** under *Assets*.
+2. In Claude: **Settings → Capabilities → Skills → Upload skill**, choose the ZIP and switch the skill on.
+For a new version, upload the new ZIP again. Every release gets this ZIP automatically.
 
 ## Versions
 Each skill is versioned on its own. Tags follow `<skill>-vX.Y.Z`, e.g. `songwriter-v0.1.0`.
@@ -43,6 +42,6 @@ Sammlung eigener Claude-Skills von Lenn.Team. Die Skills sind auf Englisch besch
 
 - **Claude Code, empfohlen:** einmal `/plugin marketplace add Lenn-Team/lenn.team-skills`, dann `/plugin install <skill>@lenn-team-skills`. Unter `/plugin` stehen danach alle Skills der Sammlung, auch neue und neue Fassungen; aktualisieren mit `/plugin marketplace update lenn-team-skills`.
 - **Claude Code, schnell:** Claude den Link geben: „Installiere den Skill https://github.com/Lenn-Team/lenn.team-skills/tree/main/skills/<skill>“.
-- **Claude-App:** Repository als ZIP laden (**Code → Download ZIP**), den Ordner `skills/<skill>/` einzeln zippen und unter **Einstellungen → Fähigkeiten → Skills → Skill hochladen** auswählen; bei einer neuen Fassung erneut hochladen.
+- **Claude-App:** im Release des Skills (Link in der Tabelle oder unter Releases) bei *Assets* die Datei **`<skill>.zip`** laden und unter **Einstellungen → Fähigkeiten → Skills → Skill hochladen** auswählen; bei einer neuen Fassung erneut hochladen. Jedes Release bekommt das ZIP automatisch.
 
 Der Marktplatz ist unser eigener, nicht das offizielle Verzeichnis von Anthropic.
