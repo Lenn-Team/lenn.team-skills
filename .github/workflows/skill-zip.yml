@@ -1,0 +1,38 @@
+# Hängt an jedes Release eines Skills (Tag <skill>-vX.Y.Z) ein fertiges ZIP des Skill-Ordners an, zum Hochladen in
+# der Claude-App (Einstellungen → Fähigkeiten → Skills). Das ZIP enthält den Ordner <skill>/ mit SKILL.md darin.
+name: Skill als ZIP
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag des Releases, z. B. songwriter-v0.1.0"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tag und Skill bestimmen
+        id: t
+        run: |
+          tag="${{ github.event.release.tag_name || inputs.tag }}"
+          skill="${tag%-v*}"
+          [[ "$tag" =~ ^[a-z0-9-]+-v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "kein Skill-Tag: $tag"; exit 1; }
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"; echo "skill=$skill" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.t.outputs.tag }}
+      - name: ZIP bauen und anhängen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          skill="${{ steps.t.outputs.skill }}"
+          test -f "skills/$skill/SKILL.md" || { echo "skills/$skill/SKILL.md fehlt"; exit 1; }
+          (cd skills && zip -qr "../$skill.zip" "$skill" -x "*/__pycache__/*" "*.pyc")
+          gh release upload "${{ steps.t.outputs.tag }}" "$skill.zip" --clobber
