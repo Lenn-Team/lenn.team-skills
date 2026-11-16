@@ -11,7 +11,7 @@
       "displayName": "Barde – Songwriter",
       "source": "./skills/songwriter",
       "description": "Song lyrics in any genre and language plus prompts for Suno and ElevenLabs – from interview to sing-along lyrics and Spotify release",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "creative",
       "tags": [
         "songwriting",

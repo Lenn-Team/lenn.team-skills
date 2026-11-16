@@ -82,7 +82,7 @@ Lyric legend: **lines/verse** (typical–max), **syllables/line**, **rhyme** (sc
 - **Instruments:** synths (supersaw, pluck, acid 303), four-on-the-floor or breakbeats, sub-bass
 - **Vocals:** short phrases, vocal chops, often one single repeated line
 - **Form:** intro – build – drop – break – build – drop – outro
-- **Lyrics:** 2–4 lines per section, repetition instead of rhyme; drop instrumental (tag, no lyrics)
+- **Lyrics:** 2–4 lines per section, repetition instead of rhyme; drop instrumental (Suno: tag without lyrics; ElevenLabs: tag plus a `{instrumental drop}` cue – empty tags get sung as murmuring)
 - **Word budget:** 80–250
 
 ## Country

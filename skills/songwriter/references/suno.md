@@ -77,13 +77,14 @@ Warm female alto, breathy verses, full belted chorus, German lyrics, modern Germ
 - **Cover:** existing song in a new style; with Variety off melody and structure are more likely to be kept.
 - **Extend:** lengthen a song; quality can drop from about 6–7 minutes, at most 2–3 extends.
 - **Voices / custom models:** your own voice or your own model trained on your own catalogue. With a voice, leave gender/range out of Styles. Never clone other people's voices.
-- **Studio / song editor:** regenerate sections selectively; listen before export (occasional language glitches).
+- **Studio / song editor:** regenerate sections selectively; listen before export (occasional language glitches). If the song works overall, repair sections here instead of generating the whole song again.
 
 ## 9. Known weaknesses
 - The model's word preferences (*neon, echo, ghost, silver, shadow, whisper, crystal, velvet*) – avoid them in your own lyrics from the start.
 - Rock/metal sometimes sound washed out, vocals drift towards generic post-grunge.
 - Extreme genre fusions get muddy.
 - With non-English lyrics, occasional English pronunciation of single words.
+- **Field note (one German pop song, Nov 2026):** performance cues inside the tags were largely ignored, the voice sounded "typically AI", breaths were not possible. In that test ElevenLabs was clearly preferred (`elevenlabs.md`, section 7). Re-test per song – one test is not a rule.
 
 ## 10. Troubleshooting (one change per round)
 

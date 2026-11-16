@@ -179,6 +179,8 @@ def syllables_en(word: str) -> int:
 
 
 def line_syllables(zeile: str, lang: str) -> int:
+    if re.fullmatch(r"\s*\{.*\}\s*", zeile):
+        return 0
     ohne_klammer = re.sub(r"\([^)]*\)", " ", zeile)
     f = syllables_de if lang == "de" else syllables_en
     return sum(f(w) for w in WORD_RE.findall(ohne_klammer))
@@ -211,7 +213,8 @@ def check(text: str, lang: str, title: str | None, bpm: int | None,
     findings: list[str] = []
 
     # Basic data
-    wordlist = [w for _, z, _ in all_lines for w in words(z)]
+    wordlist = [w for _, z, _ in all_lines
+                if not re.fullmatch(r"\s*\{.*\}\s*", z) for w in words(z)]
     chars = len(text)
     choruses = [a for a in sections if a.kind == "chorus"]
     out += [
@@ -267,7 +270,7 @@ def check(text: str, lang: str, title: str | None, bpm: int | None,
             findings.append(f"{a.name}: {len(a.lines)} lines at {bpm} BPM "
                            f"(guide max. {max_bpm}) – too dense?")
         sung = [(nr, z, s) for (nr, z), s in zip(a.lines, syll)
-                    if not re.fullmatch(r"\(.*\)", z)]
+                    if not re.fullmatch(r"\(.*\)|\{.*\}", z)]
         if len(sung) >= 3:
             med = statistics.median(s for _, _, s in sung)
             for nr, z, s in sung:
@@ -295,7 +298,7 @@ def check(text: str, lang: str, title: str | None, bpm: int | None,
     for a in sections:
         if a.kind == "chorus" and choruses and a is not choruses[0]:
             continue
-        ends = [(nr, end_word(z)) for nr, z in a.lines if not re.fullmatch(r"\(.*\)", z)]
+        ends = [(nr, end_word(z)) for nr, z in a.lines if not re.fullmatch(r"\(.*\)|\{.*\}", z)]
         for i, (n1, e1) in enumerate(ends):
             for distance, (n2, e2) in enumerate(ends[i + 1:i + 4], 1):
                 if e1 and e1 == e2:
@@ -363,6 +366,12 @@ def check(text: str, lang: str, title: str | None, bpm: int | None,
                 first, last = r.lines[0][1], r.lines[-1][1]
                 if tl not in " ".join(words(first)) and tl not in " ".join(words(last)):
                     findings.append("Title not in the first or last chorus line.")
+
+    # Empty sections (ElevenLabs sings empty tags as murmuring)
+    for a in sections:
+        if not a.lines and a.kind not in ("outro",) and not a.name.lower().startswith("end"):
+            findings.append(f"{a.name}: empty section tag – fine for Suno; for ElevenLabs "
+                            "add an explicit cue such as {instrumental intro}.")
 
     # End tag
     if any(TAG_RE.match(z) for z in text.splitlines()):

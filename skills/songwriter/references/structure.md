@@ -40,7 +40,7 @@ Rules:
 - Verses never identical.
 
 ## 5. Intro and ending
-- **Intro:** short, clear purpose (hook motif, atmosphere, vocals straight away). For generators: `[Intro]` without lyrics or with one line; avoid long intros.
+- **Intro:** short, clear purpose (hook motif, atmosphere, vocals straight away). For generators: `[Intro]` without lyrics (Suno) or with an explicit `{instrumental intro}` cue (ElevenLabs – empty tags get sung), or with one line; avoid long intros.
 - **Choose the ending deliberately:** fade-out, hard stop, return of the first line, closing punchline, a cappella chorus. In Suno set `[Outro]` and `[End]`, otherwise the song sometimes stops mid-sentence.
 
 ## 6. Timing and length

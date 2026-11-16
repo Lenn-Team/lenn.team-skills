@@ -27,7 +27,8 @@ Determine what is needed first – not every task runs through every phase.
 | Task | Phases |
 |---|---|
 | New song (complete) | 0–8, optionally 9–10 |
-| Lyrics exist, only prompt / production package | 0, short music interview, 2 (music), 6, 8 |
+| Final lyrics exist, only prompt / production package | 0, short music interview, 2 (music), 6, 8 |
+| A draft exists and should become a song | full workflow from 0 – the draft is material, not a brief |
 | Revise single lines or sections | 0, 6, 7 – leave the rest untouched |
 | Second opinion / critique | 6, output "lyric review" – do not rewrite unasked |
 | Lyrics to an existing melody | 0–1, syllable/stress table, 4–7 |
@@ -42,6 +43,8 @@ Determine what is needed first – not every task runs through every phase.
 Task type, purpose (occasion, release, fun, gift, jingle), target (Suno, ElevenLabs, real band), language, deadline. Review what already exists (lyric fragments, melody, voice memo, reference songs).
 
 ### Phase 1 – Interview
+**Hard gate: no chorus without an interview – even if a lyric draft already exists.** An existing draft is material, not a brief. Skipping the interview produces lyrics that sound contrived; the real core of a song (why it matters to this person, when they listen to it) usually only surfaces in conversation.
+
 Question bank: `references/interview.md`. Rules:
 - Ask in rounds, at most 3–5 questions per round, most important first. Use clickable choice questions where available (see "Working in Claude").
 - Assume what can reasonably be assumed and mark it as an assumption in the brief instead of asking.
@@ -59,6 +62,7 @@ Question bank: `references/interview.md`. Rules:
 Template: `templates/song-brief.md`. Contains the core message in one sentence, emotional turn, point of view, title candidates, hook idea, genre and music (BPM, key/mode, instruments, vocals, production, era), structure plan with energy curve (`references/structure.md`), word budget, trend stance, taboos. **Have the user confirm the brief before writing lyrics.**
 
 ### Phase 4 – Chorus first
+Only after the interview (phase 1) and a confirmed brief (phase 3).
 - 2–3 chorus options, each capturing the core message in its own way. For each, one line: which arc it takes and where the title sits.
 - The user picks (or combines). Only then continue.
 
@@ -90,8 +94,18 @@ Plus: title, style prompt (and 1–2 variants for A/B testing), exclude list, sl
 
 ### Phase 9 – Generate (optional)
 - If a Suno or ElevenLabs tool is available in the session, read its description and use only what it actually offers. Confirm before every generation (costs credits).
+- **Agree on a credit budget before a series of generations** (e.g. "at most 5 generations / 15,000 credits") and stop at the limit to ask. Cost estimates shown by tools are unreliable – log the credits actually charged per generation in the package.
 - Otherwise output the package for copy and paste, field by field.
-- Translate user feedback ("chorus too quiet", "voice too smooth", "genre drifts") into targeted changes – change only one thing per round.
+- Translate user feedback ("chorus too quiet", "voice too smooth", "genre drifts") into targeted changes – change only one thing per round. Expect large variation even between unchanged repeats; judge a change over two takes, not one.
+- **Repair before regenerating:** when the song works overall, fix single sections (missing lines, wrong words) in the generator's section editor instead of generating the whole song again (`references/elevenlabs.md`, `references/suno.md`).
+- Don't propose mixing in breaths or other sounds as separate SFX afterwards – it sounds pasted in.
+- Keep a log per round: version, change, credits, the user's rating. It is how the right version is found again later.
+
+### Phase 9b – Check what was sung
+- If a transcription tool is available (e.g. ElevenLabs speech-to-text), transcribe the chosen version and compare it with the generator lyrics: missing lines, changed words, sung tags or directions.
+- Report differences as a table (section | written | sung). The user decides: repair in the editor, regenerate, or accept.
+- **The sing-along lyrics follow what is actually sung** in the final version (after the user's decision), not the planned text.
+- Limits: whispered parts are often not recognised; contractions get normalised in transcripts (sung "heut" → transcribed "Heute"). Check doubtful spots with the user by ear.
 
 ### Phase 10 – Release (on request)
 Per `references/release.md`: check rights, choose a distributor, disclose AI involvement, fill in the release sheet (`templates/release-sheet.md`), plan the timeline including the Spotify pitch.
@@ -108,7 +122,9 @@ Use only what is actually available in the session; tool names differ between th
 | Durable documents | Artifacts or files (in the Claude app: the document type, if available) | Song brief, production package and release sheet as an editable document updated over several rounds instead of repeating them in chat. In Claude Code as Markdown files in the working folder. |
 | Visualisation | Inline diagram | Show energy curve and structure plan as a small graphic when it helps agreement. |
 | Scripts | Code execution | `textcheck.py` at every check; `audio_analysis.py` for uploaded audio. |
-| Generating | Connectors (Suno MCP, ElevenLabs) | Only after the production package is confirmed; mention credits first. |
+| Generating | Connectors (Suno MCP, ElevenLabs) | Only after the production package is confirmed; agree on a credit budget first. |
+| Checking the result | Transcription (e.g. ElevenLabs speech-to-text) | Phase 9b: compare what was sung with the lyrics. |
+| Organising generations | Canvas/flow of the generator connector (e.g. ElevenLabs flows) | From the start: text nodes for prompt and lyrics, connected to the music nodes; unique names per version ("v5 – major key, shorter bridge"); mark the favourite. |
 | Continuing work | Past-chat search, project knowledge | On "continue with my song", search for the earlier brief instead of asking again. In Claude projects, keep briefs and packages as project knowledge. |
 | Copyable fields | Code blocks | Every generator field (Title, Styles, Exclude, Lyrics) in its own code block. |
 
@@ -143,6 +159,11 @@ Response style: short between steps, results go into the documents rather than t
 - [ ] Names, abbreviations, numbers, foreign and ambiguous words secured phonetically in the generator version – everywhere they occur.
 - [ ] No stage directions as running text in the lyrics box (they get sung).
 - [ ] `[Outro]`/`[End]` set if the song should end cleanly.
+
+**After generating** (phase 9b)
+- [ ] Transcript compared with the lyrics; missing or changed lines resolved.
+- [ ] Sing-along lyrics match what is actually sung.
+- [ ] Credits per generation logged; budget respected.
 
 ## Output formats
 

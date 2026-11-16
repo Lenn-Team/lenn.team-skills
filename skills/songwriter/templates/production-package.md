@@ -51,7 +51,7 @@ Every field is in its own code block so it can be copied separately. Explanation
 Global prompt: …
 Length: …
 Sections:
-1. [Intro] – 0:08 – style: … – no lyrics
+1. [Intro] – 0:08 – style: … – text: {instrumental intro}
 2. [Verse 1] – 0:20 – style: … – lyrics: …
 Negative: …
 ```
@@ -75,7 +75,16 @@ No tags, no phonetic spelling, correct spelling, repeats written out, sections s
 …
 ```
 
-## E. Listening checklist for the user
+## E. Budget and links
+- **Credit budget agreed:** <e.g. max. 5 generations / 15,000 credits>
+- **Links:** <Suno song links / ElevenLabs product_link / flow URL>
+
+## F. Check what was sung (phase 9b)
+| Section | Written | Sung | Decision |
+|---|---|---|---|
+| | | | repair / regenerate / accept |
+
+## G. Listening checklist for the user
 Rate each generation 1–5 and report back to Claude:
 - Voice (range/texture right?)
 - Intelligibility and pronunciation (which words wrong?)
@@ -85,7 +94,7 @@ Rate each generation 1–5 and report back to Claude:
 - Hook (does it stick after one listen?)
 - Overall impression + timestamps of notable spots
 
-## F. Log
-| Version | Change | Result |
-|---|---|---|
-| | | |
+## H. Log
+| Version | Change | Credits (charged) | Rating 1–5 | Note |
+|---|---|---|---|---|
+| | | | | |
