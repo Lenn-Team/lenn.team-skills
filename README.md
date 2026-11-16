@@ -6,7 +6,7 @@ A collection of Claude skills by Lenn.Team. Each skill lives in its own folder u
 
 | Skill | Folder | Version | Purpose |
 |---|---|---|---|
-| Barde – Songwriter | [`skills/songwriter/`](skills/songwriter/) | [0.1.0](https://github.com/Lenn-Team/lenn.team-skills/releases/tag/songwriter-v0.1.0) ([ZIP](https://github.com/Lenn-Team/lenn.team-skills/releases/download/songwriter-v0.1.0/songwriter.zip)) | Song lyrics in any genre and language, prompts for Suno and ElevenLabs, through to a Spotify release |
+| Barde – Songwriter | [`skills/songwriter/`](skills/songwriter/) | [0.1.1](https://github.com/Lenn-Team/lenn.team-skills/releases/tag/songwriter-v0.1.1) ([ZIP](https://github.com/Lenn-Team/lenn.team-skills/releases/download/songwriter-v0.1.1/songwriter.zip)) | Song lyrics in any genre and language, prompts for Suno and ElevenLabs, through to a Spotify release |
 
 ## Installation
 Replace `<skill>` with the folder name of a skill from the table above (for example `songwriter`). This repository is our own plugin marketplace for Claude Code (`.claude-plugin/marketplace.json`, name `lenn-team-skills`); it is not part of Anthropic's official directory.
